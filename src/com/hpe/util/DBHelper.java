@@ -17,7 +17,7 @@ public class DBHelper {
 	private static final String DRIVER = "com.mysql.jdbc.Driver"; //驱动类的路径
 	private static final String URL = "jdbc:mysql://127.0.0.1:3306/myapsfc?useUnicode=true&&characterEncoding=UTF-8";
 	private static final String USER = "root";
-	private static final String PWD = "123456";
+	private static final String PWD = "dengxin";
 	
 	/**
 	 * 获得连接

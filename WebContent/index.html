@@ -1,23 +1,6 @@
-<%@page import="java.sql.ResultSet"%>
-<%@page import="com.hpe.util.DBHelper"%>
-<%@page import="java.sql.Connection"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<% 
-//获取连接接口
-Connection  conn=DBHelper.getConn();
-String  sql="select *  from dishes";
-ResultSet  rs=DBHelper.executeQuery(conn, sql);
-
-String sql02="select * from car where user_id=?";
-
-int i=Integer.parseInt(session.getAttribute("userid").toString());
-ResultSet rs2=DBHelper.executeQuery(conn, sql02, i);
-
-
-%>
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="css/menu.css" />
@@ -84,7 +67,7 @@ ResultSet rs2=DBHelper.executeQuery(conn, sql02, i);
                 -->
 					<div id="top_bottom_right">
 						<div id="title">
-							亲爱的<%=session.getAttribute("userid")%>您好! 欢迎光临!
+							亲爱的111您好! 欢迎光临!
 						</div>
 						<ul>
 							<li>
@@ -129,26 +112,90 @@ ResultSet rs2=DBHelper.executeQuery(conn, sql02, i);
                     	时间：2017-03-10
                     	描述：中层左部内容
                     -->
-                    <%while(rs.next()){%> 
-                    <div class="context">
+					<div class="context">
 						<div class="context_top">
 							<div class="context_img">
-							   <img alt="" src="<%=rs.getString(10)%>">
+								<img src="img/1253519531.jpg" />
 							</div>
 							<div class="context_font">
-								菜名: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><%=rs.getString(2) %></b><br/> 市场价格: <%=rs.getDouble(6) %><br/> 会员价格:
-								<font><b><%=rs.getDouble(8) %></b></font><br/> 配料: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%=rs.getString(4) %><br/> <br/> <br/> 菜品类型: 炒菜
+								菜名: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>糖醋排骨</b><br/> 市场价格: 26.0<br/> 会员价格:
+								<font><b>24.0</b></font><br/> 配料: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 排骨、糖、醋<br/> <br/> <br/> 菜品类型: 炒菜
 							</div>
 						</div>
 						<div class="context_button">
-							<a href="AddCar.jsp?cname=<%=rs.getString(2)%>&cprice=<%=rs.getDouble(6)%>"><img src="img/img_dinggou.gif" /></a>
-							
+							<a href="#"><img src="img/img_dinggou.gif" /></a>
 						</div>
 					</div>
-                    	
-                   <% } %>
-                    
-		
+					<div class="context">
+						<div class="context_top">
+							<div class="context_img">
+								<img src="img/1253519531.jpg" />
+							</div>
+							<div class="context_font">
+								菜名: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>糖醋排骨</b><br/> 市场价格: 26.0<br/> 会员价格:
+								<font><b>24.0</b></font><br/> 配料: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 排骨、糖、醋<br/> <br/> <br/> 菜品类型: 炒菜
+							</div>
+						</div>
+						<div class="context_button">
+							<a href="#"><img src="img/img_dinggou.gif" /></a>
+						</div>
+					</div>
+					<div class="context">
+						<div class="context_top">
+							<div class="context_img">
+								<img src="img/1253519531.jpg" />
+							</div>
+							<div class="context_font">
+								菜名:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>糖醋排骨</b><br/> 市场价格: 26.0<br/> 会员价格:
+								<font><b>24.0</b></font><br/> 配料: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 排骨、糖、醋<br/> <br/> <br/> 菜品类型: 炒菜
+							</div>
+						</div>
+						<div class="context_button">
+							<a href="#"><img src="img/img_dinggou.gif" /></a>
+						</div>
+					</div>
+					<div class="context">
+						<div class="context_top">
+							<div class="context_img">
+								<img src="img/1253519531.jpg" />
+							</div>
+							<div class="context_font">
+								菜名: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>糖醋排骨</b><br/> 市场价格: 26.0<br/> 会员价格:
+								<font><b>24.0</b></font><br/> 配料: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 排骨、糖、醋<br/> <br/> <br/> 菜品类型: 炒菜
+							</div>
+						</div>
+						<div class="context_button">
+							<a href="#"><img src="img/img_dinggou.gif" /></a>
+						</div>
+					</div>
+					<div class="context">
+						<div class="context_top">
+							<div class="context_img">
+								<img src="img/1253519531.jpg" />
+							</div>
+							<div class="context_font">
+								菜名: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>糖醋排骨</b><br/> 市场价格: 26.0<br/> 会员价格:
+								<font><b>24.0</b></font><br/> 配料: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 排骨、糖、醋<br/> <br/> <br/> 菜品类型: 炒菜
+							</div>
+						</div>
+						<div class="context_button">
+							<a href="#"><img src="img/img_dinggou.gif" /></a>
+						</div>
+					</div>
+					<div class="context">
+						<div class="context_top">
+							<div class="context_img">
+								<img src="img/1253519531.jpg" />
+							</div>
+							<div class="context_font">
+								菜名: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>糖醋排骨</b><br/> 市场价格: 26.0<br/> 会员价格:
+								<font><b>24.0</b></font><br/> 配料: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 排骨、糖、醋<br/> <br/> <br/> 菜品类型: 炒菜
+							</div>
+						</div>
+						<div class="context_button">
+							<a href="#"><img src="img/img_dinggou.gif" /></a>
+						</div>
+					</div>
 				</div>
 				<!--
                 	作者：luchao7285@163.com
@@ -183,9 +230,6 @@ ResultSet rs2=DBHelper.executeQuery(conn, sql02, i);
                     	时间：2017-03-11
                     	描述：我的餐车栏
                     -->
-                    <%
-                    	
-                    %>
 					<div id="diner">
 						<div id="diner_title">
 							我的餐车
@@ -193,30 +237,12 @@ ResultSet rs2=DBHelper.executeQuery(conn, sql02, i);
 						</div>
 						<br/>
 						<div id="diner_context_head">
-							菜单名称&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数量
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;菜单名称&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数量
 						</div>
-						<table>
-						<%
-						double sum=0;
-						int fenshu=0;
-						while(rs2.next()){
-						%>	
-							<tr>
-							<td width="120px"><%=rs2.getString(3)%></td>
-							<td width="90px"><%=rs2.getDouble(4)%>元</td>
-							<td width="50px"><%=rs2.getInt(5)%>份</td>
-							</tr>
-						 <%
-							sum+=rs2.getDouble(4);
-						 	fenshu+=rs2.getInt(5);
-						}%>
-							
-						</table>
-						
 						<div id="diner_context_foot">
-							小计：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<font><%=sum%></font>元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<font><%=fenshu%></font>份
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小计：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<font>0.0</font>元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<font>0</font>份
 						</div>
 						<div id="diner_context_button">
 							<a href="#"><img src="img/canche_submit.gif" /></a>

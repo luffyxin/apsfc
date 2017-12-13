@@ -17,12 +17,13 @@ String sql="select id from  users where account=? and password=?";
 if(rs.next()){
 	System.out.print("登录成功");
 	//登录成功跳转到项目首页面
+	session.setAttribute("account", account);
+	session.setAttribute("userid", rs.getInt(1));
 	request.getRequestDispatcher("index.jsp").forward(request, response);
 }else{
 	System.out.print("登录失败");
 	//跳转到项目的注册页面
 	request.getRequestDispatcher("userCenter.jsp").forward(request, response);
-
 }
 
 
