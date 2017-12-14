@@ -13,14 +13,34 @@
 
 <%
 request.setCharacterEncoding("utf-8");
-int userid=Integer.parseInt(session.getAttribute("userid").toString());
+Connection conn=DBHelper.getConn();
+
+
+int userId=Integer.parseInt(session.getAttribute("userid").toString());
 String cname=request.getParameter("cname");
 double cprice=Double.parseDouble(request.getParameter("cprice"));
 
-Connection conn=DBHelper.getConn();
-String sql="insert into car (user_id,dish_name,dish_price,count) VALUES(?,?,?,?)";
-DBHelper.executeUpdate(conn, sql,userid,cname,cprice,1);
+ResultSet rs =  null;
+if(userId!=0){
+	String sql = "select cid from car where dish_name=? and user_id=?";
+	rs = DBHelper.executeQuery(conn, sql, cname,userId);
+}else{
+	String sql = "select cid from car where dish_name=?";
+	rs = DBHelper.executeQuery(conn, sql, cname);
+}
+if (rs.next()) {	
+	String sql2 = "update car set count=count+1 where dish_name=?";
+	DBHelper.executeUpdate(conn, sql2, cname);
+} else {
+	String sql3 = "insert into car (user_id,dish_name,dish_price,count) values(?,?,?,?)";
+	DBHelper.executeUpdate(conn, sql3, userId, cname, cprice, 1);
+}
+//执行成功之后，返回首页面
 request.getRequestDispatcher("index.jsp").forward(request, response);
+
+
+
+
 %>
 </body>
 </html>
