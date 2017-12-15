@@ -16,12 +16,12 @@ request.setCharacterEncoding("utf-8");
 Connection conn=DBHelper.getConn();
 
 
-int userId=Integer.parseInt(session.getAttribute("userid").toString());
+Integer userId=(Integer)session.getAttribute("userid");
 String cname=request.getParameter("cname");
 double cprice=Double.parseDouble(request.getParameter("cprice"));
 
 ResultSet rs =  null;
-if(userId!=0){
+if(userId!=null){
 	String sql = "select cid from car where dish_name=? and user_id=?";
 	rs = DBHelper.executeQuery(conn, sql, cname,userId);
 }else{

@@ -8,13 +8,16 @@
 Connection  conn=DBHelper.getConn();
 String  sql="select *  from dishes";
 ResultSet  rs=DBHelper.executeQuery(conn, sql);
-
-String sql02="select * from car where user_id=?";
-
-int i=Integer.parseInt(session.getAttribute("userid").toString());
-ResultSet rs2=DBHelper.executeQuery(conn, sql02, i);
-
-
+String sql2="select *  from car ";  
+Integer  userId=(Integer)session.getAttribute("userid");
+ResultSet  rs2=null;
+if(userId==null){
+	  sql2=sql2+"where user_id  is null";
+	  rs2=DBHelper.executeQuery(conn, sql2);
+}else{
+	  sql2=sql2+"where user_id = ?";
+	 rs2= DBHelper.executeQuery(conn, sql2, userId);
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -53,7 +56,7 @@ ResultSet rs2=DBHelper.executeQuery(conn, sql02, i);
 							<a href="userCenter.jsp">会员注册</a>
 						</li>|
 						<li>
-							<a href="#">注销退出</a>
+							<a href="loginOut.jsp">注销退出</a>
 						</li>|
 						<li>
 							<a href="description.jsp">配送说明</a>
@@ -84,7 +87,12 @@ ResultSet rs2=DBHelper.executeQuery(conn, sql02, i);
                 -->
 					<div id="top_bottom_right">
 						<div id="title">
-							亲爱的<%=session.getAttribute("userid")%>您好! 欢迎光临!
+						<%
+						if(session.getAttribute("account")==null){%>
+							游客你好！请先登录
+						<%}else{%>												
+							亲爱的<%=session.getAttribute("account")%>您好! 欢迎光临!
+							<%}%>
 						</div>
 						<ul>
 							<li>
@@ -106,7 +114,7 @@ ResultSet rs2=DBHelper.executeQuery(conn, sql02, i);
 								<a href="aboutUs.jsp"><b>关于我们</b></a>
 							</li>
 							<li>
-								<a href="#"><b>注销退出</b></a>
+								<a href="loginOut.jsp"><b>注销退出</b></a>
 							</li>
 						</ul>
 					</div>
@@ -137,12 +145,12 @@ ResultSet rs2=DBHelper.executeQuery(conn, sql02, i);
 							</div>
 							<div class="context_font">
 								菜名: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><%=rs.getString(2)%></b><br/> 市场价格: <%=rs.getDouble(6)%><br/> 会员价格:
-								<font><b><%=rs.getDouble(8)%></b></font><br/> 配料: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=rs.getString(4)%><br/> <br/> <br/> 菜品类型: 炒菜
+								<font><b><%=rs.getDouble(8)%></b></font><br/> 配料: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=rs.getString(4)%><br/> 菜品类型: 炒菜
 							</div>
 						</div>
 						<div class="context_button">
 						    <!--加入餐车按钮  -->
-							<a href="addCar.jsp?dinnerName=<%=rs.getString(2)%>&&dinnerPrice=<%=rs.getDouble(6)%>"><img src="img/img_dinggou.gif" /></a>
+							<a href="AddCar.jsp?cname=<%=rs.getString(2)%>&cprice=<%=rs.getDouble(6)%>"><img src="img/img_dinggou.gif" /></a>
 						</div>
 					</div>
                    <%} %>
@@ -163,7 +171,7 @@ ResultSet rs2=DBHelper.executeQuery(conn, sql02, i);
 					<div id="announcement">
 						<div id="announcement_title">
 							餐厅公告
-							<a href="#">更多>></a>
+							<a href="notice.jsp">更多>></a>
 						</div>
 						<br/>
 						<ul>
@@ -188,7 +196,7 @@ ResultSet rs2=DBHelper.executeQuery(conn, sql02, i);
 					<div id="dinner">
 						<div id="dinner_title">
 							我的餐车
-							<a href="#">更多>></a>
+							<a href="dinner.jsp">更多>></a>
 						</div>
 						<br/>
 						<div id="dinner_context_head">
@@ -206,7 +214,7 @@ ResultSet rs2=DBHelper.executeQuery(conn, sql02, i);
 							<td width="50px"><%=rs2.getInt(5)%>份</td>
 							</tr>
 						 <%
-							sum+=rs2.getDouble(4);
+							sum+=rs2.getDouble(4)*rs2.getInt(5);
 						 	fenshu+=rs2.getInt(5);
 						}%>
 							

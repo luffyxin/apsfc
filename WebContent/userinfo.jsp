@@ -1,3 +1,6 @@
+	<%@page import="java.sql.ResultSet"%>
+	<%@page import="com.hpe.util.DBHelper"%>
+	<%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,11 +10,26 @@
 		<meta charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="css/menu.css" />
 		<link rel="stylesheet" type="text/css" href="css/bodyAndBottom.css" />
-		<link rel="stylesheet" type="text/css" href="css/login.css" />
-		<title>用户登陆</title>
+		<link rel="stylesheet" type="text/css" href="css/userCenter.css" />
+		<title>用户中心</title>
 	</head>
 
 	<body>
+	<%
+		Integer userid=(Integer)session.getAttribute("userid");
+	ResultSet rs=null;
+		if(userid!=null){
+			String sql="select * from users where id=?";
+			Connection conn=DBHelper.getConn();
+			rs=DBHelper.executeQuery(conn, sql,userid);
+			rs.next();
+		}
+		
+	
+	
+		
+		
+	%>
 		<!--
         	作者：luchao7285@163.com
         	时间：2017-03-10
@@ -28,7 +46,7 @@
                 	作者：luchao7285@163.com
                 	时间：2017-03-10
                 	描述：上层上块
-                --> 
+                -->
 				<div id="top_up">
 					<ul>
 						<li>
@@ -69,19 +87,14 @@
                 -->
 					<div id="top_bottom_right">
 						<div id="title">
-							<%
-						if(session.getAttribute("account")==null){%>
-							游客你好！请先登录
-						<%}else{%>												
-							亲爱的<%=session.getAttribute("account")%>您好! 欢迎光临!
-							<%}%>
+							<%=session.getAttribute("account")==null?"请登录":"亲爱的"+session.getAttribute("account")+"您好! 欢迎光临!" %>
 						</div>
 						<ul>
 							<li>
 								<a href="index.jsp"><b>首页</b></a>
 							</li>
 							<li>
-								<a href="dinner.jsp"><b>我的餐车</b></a>
+								<a href="diner.jsp"><b>我的餐车</b></a>
 							</li>
 							<li>
 								<a href="order.jsp"><b>我的订单</b></a>
@@ -107,49 +120,65 @@
             	时间：2017-03-10
             	描述：中层
             -->
-			<div id="middle_login">
-				<!--
-                	作者：luchao7285@163.com
-                	时间：2017-03-11
-                	描述：登陆框背板
-                -->
-				<div id="login_background">
-					<!--
-                    	作者：luchao7285@163.com
-                    	时间：2017-03-11
-                    	描述：登陆框
-                    -->
-					<div id="login_input">
-						<form method="post" action="doLogin.jsp">
-							<div class="input">账号： <input type="text" name="account" /></div>
-							<div class="input">密码： <input type="password" name="password" /></div>
-							<div align="center">
-							<tr>
-							<td><input type="submit" id="submit" value="" /></td>
-							<td><a href="#"><img src="img/zhuce.gif" id="zhuce" /></a></td>
-							</tr>
-									
-								
-							</div>
-						</form>
-					</div>
-					<!--
-                    	作者：luchao7285@163.com
-                    	时间：2017-03-11
-                    	描述：登陆提示
-                    -->
-					<div id="login_title">
-						<ul>
-							<li>如果您已经是会员，请在左侧登录</li>
-							<li>如果您还没有注册会员，
-								<a href="userCenter.jsp" id="register">点这里注册新会员</a>
-							</li>
-							<li>如果您忘记了密码，
-								<a href="#" id="resetpassword">点这里重设一个密码</a>
-							</li>
-						</ul>
-					</div>
-				</div>
+			<div id="middle_userCenter">
+			<form action="doUserCenter.jsp"  method="post">
+				<table border="2" cellspacing="0" cellpadding="0" bordercolor="orangered">
+					<tr>
+						<td colspan="3"><b>用户信息</b></td>
+					</tr>
+					<tr>
+						<td class="left">用 户 名：</td>
+						<td class="center"><%=rs.getString(2)%></td>
+			
+					</tr>
+					<tr>
+						<td class="left">密 码：</td>
+						<td class="center"><%=rs.getString(3) %></td>
+			
+					</tr>
+					<tr>
+						<td class="left">真实姓名：</td>
+						<td class="center"><%=rs.getString(4) %></td>
+			
+					</tr>
+					<tr>
+						<td class="left">性 别：</td>
+						<td align="center"><%=rs.getString(5) %></td>
+			
+					</tr>
+					<tr>
+						<td class="left">生 日：</td>
+						<td class="center"><%=rs.getString(6) %></td>
+			
+					</tr>
+					<tr>
+						<td class="left">身份证号：</td>
+						<td class="center"><%=rs.getString(7) %></td>
+		
+					</tr>
+					<tr>
+						<td class="left">家庭住址：</td>
+						<td class="center"><%=rs.getString(8) %></td>
+			
+					</tr>
+					<tr>
+						<td class="left">电话号码：</td>
+						<td class="center"><%=rs.getString(9) %></td>
+	
+					</tr>
+					<tr>
+						<td class="left">电子邮箱：</td>
+						<td class="center"><%=rs.getString(10) %></td>
+			
+					</tr>
+					<tr>
+						<td class="left">邮政编码：</td>
+						<td class="center"><%=rs.getString(11) %></td>
+					</tr>
+					<tr>
+					</tr>
+				</table>
+			</form>
 			</div>
 			<!--
         	作者：luchao7285@163.com

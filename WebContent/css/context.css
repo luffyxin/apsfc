@@ -108,7 +108,7 @@
 #announcement_title a {
 	margin-left: 50px;
 	font-family: "微软雅黑";
-	font-size: 4px;
+	font-size: 20px;
 	color: black;
 	text-decoration: none;
 }
@@ -139,7 +139,7 @@
 #diner_title a {
 	margin-left: 50px;
 	font-family: "微软雅黑";
-	font-size: 4px;
+	font-size: 20px;
 	color: black;
 	text-decoration: none;
 }
@@ -225,7 +225,7 @@
 #sell_title a {
 	margin-left: 30px;
 	font-family: "微软雅黑";
-	font-size: 4px;
+	font-size: 15px;
 	color: black;
 	text-decoration: none;
 }

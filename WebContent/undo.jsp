@@ -1,5 +1,18 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="com.hpe.util.DBHelper"%>
+<%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%
+    Connection conn=DBHelper.getConn();
+    String sql="select u.name as userName,u.tel,u.address,o.dishes_name as dishesName,o.dishes_sum,o.dishes_price  priceAssociator, o.dateTime,o.delivery "
+			+ "from orders o,users u   where delivery=? and userId=?";
+            int delivery=0;Integer userId=Integer.parseInt(session.getAttribute("userid").toString());
+    		ResultSet rs=DBHelper.executeQuery(conn,sql,delivery,userId);
+    	
+    		
+    %>
+   
 <!DOCTYPE html>
 <html>
 
@@ -7,8 +20,8 @@
 		<meta charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="css/menu.css" />
 		<link rel="stylesheet" type="text/css" href="css/bodyAndBottom.css" />
-		<link rel="stylesheet" type="text/css" href="css/login.css" />
-		<title>用户登陆</title>
+		<link rel="stylesheet" type="text/css" href="css/order.css" />
+		<title>我的订单</title>
 	</head>
 
 	<body>
@@ -28,7 +41,7 @@
                 	作者：luchao7285@163.com
                 	时间：2017-03-10
                 	描述：上层上块
-                --> 
+                -->
 				<div id="top_up">
 					<ul>
 						<li>
@@ -69,7 +82,7 @@
                 -->
 					<div id="top_bottom_right">
 						<div id="title">
-							<%
+								<%
 						if(session.getAttribute("account")==null){%>
 							游客你好！请先登录
 						<%}else{%>												
@@ -107,49 +120,63 @@
             	时间：2017-03-10
             	描述：中层
             -->
-			<div id="middle_login">
-				<!--
-                	作者：luchao7285@163.com
-                	时间：2017-03-11
-                	描述：登陆框背板
-                -->
-				<div id="login_background">
-					<!--
-                    	作者：luchao7285@163.com
-                    	时间：2017-03-11
-                    	描述：登陆框
-                    -->
-					<div id="login_input">
-						<form method="post" action="doLogin.jsp">
-							<div class="input">账号： <input type="text" name="account" /></div>
-							<div class="input">密码： <input type="password" name="password" /></div>
-							<div align="center">
-							<tr>
-							<td><input type="submit" id="submit" value="" /></td>
-							<td><a href="#"><img src="img/zhuce.gif" id="zhuce" /></a></td>
-							</tr>
-									
-								
-							</div>
-						</form>
-					</div>
-					<!--
-                    	作者：luchao7285@163.com
-                    	时间：2017-03-11
-                    	描述：登陆提示
-                    -->
-					<div id="login_title">
-						<ul>
-							<li>如果您已经是会员，请在左侧登录</li>
-							<li>如果您还没有注册会员，
-								<a href="userCenter.jsp" id="register">点这里注册新会员</a>
-							</li>
-							<li>如果您忘记了密码，
-								<a href="#" id="resetpassword">点这里重设一个密码</a>
-							</li>
-						</ul>
-					</div>
-				</div>
+			<div id="middle_order">
+				<table border="2" cellspacing="0" cellpadding="0" bordercolor="orangered">
+					<tr>
+						<td width="200px" align="right">按菜品名称查询</td>
+						<td width="300px" align="left"><input type="text" />
+							<a href="date.jsp"><img src="img/search5.gif" /></a>
+						</td>
+					</tr>
+					<tr>
+						<td width="200px" align="right">按菜品名称查询</td>
+						<td width="300px" align="left"><input type="text" />
+							<a href="date.jsp"><img src="img/search5.gif" /></a>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<a href="all.jsp">我的所有订单</a>
+							<a href="undo.jsp">未已派送订单</a>
+							<a href="do.jsp">已派送订单</a>
+						</td>
+					</tr>
+				</table>
+				<br/>
+				<table border="2" cellspacing="0" cellpadding="0" bordercolor="orangered">
+					<tr>
+						<td colspan="9"><b>订单查询结果信息列表</b></td>
+					</tr>
+					
+					<tr id="list_title">
+						<td>菜品名称</td>
+						<td>真实姓名</td>
+						<td>订购电话</td>
+						<td>派送地址</td>
+						<td>订购数量</td>
+						<td>单价(元)</td>
+						<td>合计(元)</td>
+						<td style="width: 160px;">订购时间</td>
+						<td>是否派送</td>
+					</tr>
+					<%
+					while (rs.next()) {
+				%>
+				<tr>
+					<td><%=rs.getString(4)%></td>
+					<td><%=rs.getString(1)%></td>
+					<td><%=rs.getString(2)%></td>
+					<td><%=rs.getString(3)%></td>
+					<td><%=rs.getInt(5)%></td>
+					<td><%=rs.getDouble(6)%></td>
+					<td><%=rs.getInt(5) * rs.getDouble(6)%></td>
+					<td><%=rs.getDate(7)%></td>
+					<td><%=rs.getInt(8) == 0 ? "否" : "是"%></td>
+				</tr>
+				<%
+					}
+				%>
+				</table>
 			</div>
 			<!--
         	作者：luchao7285@163.com

@@ -1,14 +1,14 @@
-#middle_diner {
+#middle_dinner {
 	margin-top: 10px;
 	font-family: "微软雅黑";
 	font-size: 14px;
 }
 
-#middle_diner td {
+#middle_dinner td {
 	height: 30px;
 }
 
-#middle_diner table {
+#middle_dinner table {
 	margin: 0 auto;
 	text-align: center;
 	border-radius: calc(5px);

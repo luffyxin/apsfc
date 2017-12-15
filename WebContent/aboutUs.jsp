@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 	<head>
@@ -33,19 +35,19 @@
 				<div id="top_up">
 					<ul>
 						<li>
-							<a href="login.html">会员登录</a>
+							<a href="login.jsp">会员登录</a>
 						</li>|
 						<li>
-							<a href="userCenter.html">会员注册</a>
+							<a href="userCenter.jsp">会员注册</a>
 						</li>|
 						<li>
-							<a href="#">注销退出</a>
+							<a href="loginOut.jsp">注销退出</a>
 						</li>|
 						<li>
-							<a href="description.html">配送说明</a>
+							<a href="description.jsp">配送说明</a>
 						</li>|
 						<li>
-							<a href="aboutUs.html">关于我们</a>
+							<a href="aboutUs.jsp">关于我们</a>
 						</li>
 					</ul>
 				</div>
@@ -70,29 +72,34 @@
                 -->
 					<div id="top_bottom_right">
 						<div id="title">
-							亲爱的111您好! 欢迎光临!
+								<%
+						if(session.getAttribute("account")==null){%>
+							游客你好！请先登录
+						<%}else{%>												
+							亲爱的<%=session.getAttribute("account")%>您好! 欢迎光临!
+							<%}%>
 						</div>
 						<ul>
 							<li>
-								<a href="index.html"><b>首页</b></a>
+								<a href="index.jsp"><b>首页</b></a>
 							</li>
 							<li>
-								<a href="diner.html"><b>我的餐车</b></a>
+								<a href="dinner.jsp"><b>我的餐车</b></a>
 							</li>
 							<li>
-								<a href="order.html"><b>我的订单</b></a>
+								<a href="order.jsp"><b>我的订单</b></a>
 							</li>
 							<li>
-								<a href="userCenter.html"><b>用户中心</b></a>
+								<a href="userCenter.jsp"><b>用户中心</b></a>
 							</li>
 							<li>
-								<a href="description.html"><b>配送说明</b></a>
+								<a href="description.jsp"><b>配送说明</b></a>
 							</li>
 							<li>
-								<a href="aboutUs.html"><b>关于我们</b></a>
+								<a href="aboutUs.jsp"><b>关于我们</b></a>
 							</li>
 							<li>
-								<a href="#"><b>注销退出</b></a>
+								<a href="loginOut.jsp"><b>注销退出</b></a>
 							</li>
 						</ul>
 					</div>
@@ -112,7 +119,7 @@
 				<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;欢迎来到阿婆私房菜，让你重温童年妈妈的味道！</p>
 				<br/>
 				<p align="center">
-					<a href="index.html">返回</a>
+					<a href="index.jsp">返回</a>
 				</p>
 			</div>
 			<!--
@@ -123,10 +130,10 @@
 			<div id="bottom" style="margin-top: 50px;">
 				<ul>
 					<li>
-						<a href="aboutUs.html">关于我们</a>
+						<a href="aboutUs.jsp">关于我们</a>
 					</li>|
 					<li>
-						<a href="description.html">配送说明</a>
+						<a href="description.jsp">配送说明</a>
 					</li>|
 				</ul>
 				Copyright(C)2015-2020

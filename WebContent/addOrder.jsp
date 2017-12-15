@@ -18,6 +18,7 @@
 	  String sql = "select * from car where user_id=?";
 	  ResultSet  rs=DBHelper.executeQuery(conn, sql, userId);
 	  while(rs.next()){
+		  
 		  String sql2="insert into orders (userId,dishes_price,dishes_name,dishes_sum,dateTime,delivery) values(?,?,?,?,?,?)";
 		  DBHelper.executeUpdate(conn, sql2, userId,rs.getDouble(4), rs.getString(3),rs.getInt(5),new Date(),0);
 	  }

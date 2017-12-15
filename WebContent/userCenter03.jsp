@@ -1,20 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
- <%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page import="com.hpe.util.DBHelper"%>
 <%@page import="java.sql.Connection"%>
- <%
- Connection  conn=DBHelper.getConn();
- String sql="select * from car";
- ResultSet  rs2=null;
- Integer userId=(Integer)session.getAttribute("userid");
- if(userId!=null){
-		sql=sql+" where user_id=?";
-		rs2=DBHelper.executeQuery(conn, sql, userId);
-	}else{
-		rs2=DBHelper.executeQuery(conn, sql);
-	}
- %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -22,8 +10,8 @@
 		<meta charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="css/menu.css" />
 		<link rel="stylesheet" type="text/css" href="css/bodyAndBottom.css" />
-		<link rel="stylesheet" type="text/css" href="css/dinner.css" />
-		<title>我的餐车</title>
+		<link rel="stylesheet" type="text/css" href="css/userCenter.css" />
+		<title>用户中心</title>
 	</head>
 
 	<body>
@@ -122,42 +110,85 @@
             	时间：2017-03-10
             	描述：中层
             -->
-			<div id="middle_dinner">
+			<div id="middle_userCenter">
+			<form  action="doInsert.jsp" method="action">
 				<table border="2" cellspacing="0" cellpadding="0" bordercolor="orangered">
 					<tr>
-						<td colspan="3"><b>我的订餐信息列表</b></td>
+						<td colspan="3"><b>请填写用户信息(带<font>*</font>为必填项)</b></td>
 					</tr>
 					<tr>
-						<td width="250px">菜品名称</td>
-						<td width="150px">单价</td>
-						<td width="150px">数量</td>
+						<td class="left">用 户 名：</td>
+						<td class="center"><input type="text" name="account" /></td>
+						<td class="right">
+							<font>*</font>您用来登录的用户名</td>
 					</tr>
-					<%
-						double sum=0;
-						int fenshu=0;
-						while(rs2.next()){
-						%>	
-							<tr>
-							<td width="120px"><%=rs2.getString(3)%></td>
-							<td width="90px"><%=rs2.getDouble(4)%>元</td>
-							<td width="50px"><%=rs2.getInt(5)%>份</td>
-							</tr>
-						 <%
-							sum+=rs2.getDouble(4);
-						 	fenshu+=rs2.getInt(5);
-						}%>
 					<tr>
-						<td colspan="3">小计：
-							<font>0.0</font>元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;共：
-							<font>0</font>份</td>
+						<td class="left">密 码：</td>
+						<td class="center"><input type="password" name="password" /></td>
+						<td class="right">
+							<font>*</font>长度必须大于5个小于16个字符，只能为英语字、数字</td>
+					</tr>
+					<tr>
+						<td class="left">确认密码：</td>
+						<td class="center"><input type="password" name="repassword" /></td>
+						<td class="right">
+							<font>*</font>请将输入的密码再次输入</td>
+					</tr>
+					<tr>
+						<td class="left">真实姓名：</td>
+						<td class="center"><input type="text" name="name" /></td>
+						<td class="right">
+							<font>*</font>填写您的真实的姓名</td>
+					</tr>
+					<tr>
+						<td class="left">性 别：</td>
+						<td align="left">男：<input type="radio" name="gender" checked="checked" />女：<input type="radio" name="gender" /></td>
+						<td class="right">
+							<font>*</font>请填写您的真实信息</td>
+					</tr>
+					<tr>
+						<td class="left">生 日：</td>
+						<td class="center"><input type="text" name="birthday" /></td>
+						<td class="right">
+							<font>*</font>请输入您的真实年龄</td>
+					</tr>
+					<tr>
+						<td class="left">身份证号：</td>
+						<td class="center"><input type="text" name="IDcard" /></td>
+						<td class="right">
+							<font>*</font>请填写您的真实信息</td>
+					</tr>
+					<tr>
+						<td class="left">家庭住址：</td>
+						<td class="center"><input type="text" name="address" /></td>
+						<td class="right">
+							<font>*</font>请填写您的真实信息</td>
+					</tr>
+					<tr>
+						<td class="left">电话号码：</td>
+						<td class="center"><input type="text" name="tel" /></td>
+						<td class="right">
+							<font>*</font>请填写您的真实信息(格式为02411111111或13911111111)</td>
+					</tr>
+					<tr>
+						<td class="left">电子邮箱：</td>
+						<td class="center"><input type="text" name="email" /></td>
+						<td class="right">
+							<font>*</font>请填写您有效的邮件地址，以便于我们为您提供有效的服务。</td>
+					</tr>
+					<tr>
+						<td class="left">邮政编码：</td>
+						<td class="center"><input type="text" name="postCode" /></td>
+						<td class="right">
+							<font>*</font>请填写您的真实信息(格式为111111)</td>
 					</tr>
 					<tr>
 						<td colspan="3">
-							<a href="addOrder.jsp"><img src="img/canche_submit.gif" /></a>
-							<a href="loginOut.jsp"><img src="img/quxiao2.gif" /></a>
+							<input type="submit" value="提交">		
 						</td>
 					</tr>
 				</table>
+			</form>
 			</div>
 			<!--
         	作者：luchao7285@163.com
@@ -178,4 +209,4 @@
 		</div>
 	</body>
 
-</html>tml>
+</html>

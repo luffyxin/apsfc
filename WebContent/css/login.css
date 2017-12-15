@@ -40,6 +40,13 @@
 	height: 19px;
 	border-width: 0px;
 }
+#zhuce{
+	background-image: url(../img/zhuce.gif);
+	width: 40px;
+	height: 19px;
+	border-width: 0px;
+	margin-top:20px;
+}
 
 #login_title {
 	float: right;

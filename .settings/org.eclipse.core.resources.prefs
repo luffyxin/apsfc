@@ -1,6 +1,11 @@
 eclipse.preferences.version=1
 encoding//WebContent/AddCar.jsp=UTF-8
+encoding//WebContent/aboutUs.jsp=UTF-8
+encoding//WebContent/css/context.css=UTF-8
+encoding//WebContent/css/login.css=UTF-8
 encoding//WebContent/doLogin.jsp=UTF-8
 encoding//WebContent/index.jsp=UTF-8
+encoding//WebContent/notice.jsp=UTF-8
+encoding//WebContent/show.jsp=UTF-8
 encoding//src/com/hpe/util/DBHelper.java=UTF-8
 encoding/WebContent=GBK
