@@ -6,9 +6,9 @@
         <%
     Connection conn=DBHelper.getConn();
     String sql="select u.name as userName,u.tel,u.address,o.dishes_name as dishesName,o.dishes_sum,o.dishes_price  priceAssociator, o.dateTime,o.delivery "
-			+ "from orders o,users u   where delivery=? and userId=?";
+			+ "from orders o,users u   where delivery=? and o.userId=? and u.id=?";
             int delivery=0;Integer userId=Integer.parseInt(session.getAttribute("userid").toString());
-    		ResultSet rs=DBHelper.executeQuery(conn,sql,delivery,userId);
+    		ResultSet rs=DBHelper.executeQuery(conn,sql,delivery,userId,userId);
     	
     		
     %>
